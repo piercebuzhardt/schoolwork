@@ -1,0 +1,21 @@
+Name: Pierce Buzhardt
+
+Course: CPSC 4160
+
+Clemson Email Address: pbuzhar@g.clemson.edu
+
+Project no: #6
+
+Project due date: May 1, 2019
+
+Project description: Add conclusion, god mode, restart, and pizzazz to project 5
+Pizzazz is painter's algorithm.
+
+NOTE: fps is not 60 due to running on a virtual machine, plus using OBS to record(high cpu usage)
+ALSO NOTE: Object pool works by removing fruit from play field, then adding them if hit. Depends on maxNumber in game.xml
+
+The easiest part of this project: Copied project 5.
+
+Problems that I had in completing this project: I can't think of any. I was having fun.
+
+Resources used: Kirby sprites are from Kirby and the Amazing Mirror for GBA, and the Bronto Burt, Scrafy, fruit, and Gordo are from Kirby Super Star Ultra for DS. Backgrounds are from Super Mario World 2: Yoshi's Island. All sprite sheets were obtained from Spriters-Resource. Sound is from Kirby and the Amazing Mirror for GBA. From Sounds Resource.

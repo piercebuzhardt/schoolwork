@@ -1,0 +1,164 @@
+<?xml version = "1.0"?>
+<GameData>
+<!-- screenTitle is also used to identify you and your animation. 
+     So make sure to include your name as part of the screenTitle -->
+<title>Pierce Buzhardt's "Kirby's Fruit Fiesta"</title>
+<maxStringSize>100</maxStringSize>
+
+<frameCapOn>true</frameCapOn>
+<period>17</period>
+
+<maxFrames>300</maxFrames>
+<username>pbuzhar</username>
+
+<numberOfFruit>3</numberOfFruit>
+<numberOfGordo>4</numberOfGordo>
+<maxNumberOfFruitOnScreen>30</maxNumberOfFruitOnScreen>
+<numberOfScarfy>10</numberOfScarfy>
+<numberOfBronto>10</numberOfBronto>
+
+<hud>
+  <loc x="0" y="0" w="330" h="230"/>
+  <name x="30" y="400"/>
+  <start>false</start>
+</hud>
+
+<view>
+  <width>640</width>
+  <height>480</height>
+  <loc x="30" y="30"/>
+</view>
+
+<world>
+  <width>2000</width>
+  <height>840</height>
+  <ground>72</ground>
+</world>
+
+<layer1>
+  <file>assets/layer1.png</file>
+  <factor>1</factor>
+  <transparency>false</transparency>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <frameInterval>30</frameInterval>
+  <frames>1</frames>
+  <startLoc x="0" y="0"/>
+</layer1>
+
+<layer2>
+  <file>assets/layer2.png</file>
+  <factor>2</factor>
+  <transparency>false</transparency>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <frameInterval>30</frameInterval>
+  <frames>1</frames>
+  <startLoc x="0" y="0"/>
+</layer2>
+
+<layer3>
+  <file>assets/layer3.png</file>
+  <factor>3</factor>
+  <transparency>false</transparency>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <frameInterval>30</frameInterval>
+  <frames>1</frames>
+  <startLoc x="0" y="0"/>
+</layer3>
+
+<font name="font">
+  <file>fonts/arial.ttf</file>
+  <size>24</size>
+  <red>255</red>
+  <green>255</green>
+  <blue>0</blue>
+  <alpha>0</alpha>
+</font>
+
+<Player>
+  <file>assets/player.png</file>
+  <startLoc x="1000" y="500"/>
+  <animated>true</animated>
+  <frames>62</frames>
+  <frameInterval>45</frameInterval>
+  <speedX>200</speedX>
+  <speedY>200</speedY>
+  <transparency>false</transparency>
+  <invulnerableTime>80</invulnerableTime>
+  <chunk>
+    <size>32</size>
+	<distance>50</distance>
+  </chunk>
+  <bulletName>puff</bulletName>
+  <lives>5</lives>
+</Player>
+
+<puff>
+  <file>assets/puff.png</file>
+  <startLoc x="0" y="0"/>
+  <speed x="300" y="0"/>
+  <speedX>200</speedX>
+  <speedY>0</speedY>
+  <interval>30</interval>
+  <distance>20</distance>
+  <scale>1.0</scale>
+  <transparency>false</transparency>
+</puff>
+
+<Fruit>
+  <file>assets/fruit.png</file>
+  <startLoc x="1000" y="200"/>
+  <animated>false</animated>
+  <frames>40</frames>
+  <frameInterval>25</frameInterval>
+  <speedX>130</speedX>
+  <speedY>130</speedY>
+  <transparency>false</transparency>
+  <type>PASSIVE</type>
+  <safeDistance>155</safeDistance>
+  <chunk>
+    <size>32</size>
+	<distance>30</distance>
+  </chunk>
+</Fruit>
+
+<Gordo>
+  <file>assets/gordo.png</file>
+  <startLoc x="1000" y="200"/>
+  <animated>true</animated>
+  <frames>4</frames>
+  <frameInterval>40</frameInterval>
+  <speedX>100</speedX>
+  <speedY>100</speedY>
+  <transparency>false</transparency>
+  <type>MEAN</type>
+  <safeDistance>300</safeDistance>
+  <chunk>
+    <size>32</size>
+	<distance>100</distance>
+  </chunk>
+</Gordo>
+
+<Scarfy>
+  <file>assets/scarfy.png</file>
+  <startLoc x="1000" y="400"/>
+  <frames>12</frames>
+  <frameInterval>40</frameInterval>
+  <speedX>200</speedX>
+  <speedY>10</speedY>
+  <transparency>false</transparency>
+</Scarfy>
+
+<Bronto>
+  <file>assets/bronto.png</file>
+  <startLoc x="1000" y="400"/>
+  <frames>8</frames>
+  <frameInterval>20</frameInterval>
+  <speedX>150</speedX>
+  <speedY>30</speedY>
+  <transparency>false</transparency>
+</Bronto>
+
+</GameData>
