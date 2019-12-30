@@ -1,0 +1,1255 @@
+-- MySQL dump 10.13  Distrib 5.5.62, for Linux (x86_64)
+--
+-- Host: driverdb.cgbvpo0s4pjx.us-east-1.rds.amazonaws.com    Database: DriverRewards4910
+-- ------------------------------------------------------
+-- Server version	5.6.40-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `account`
+--
+
+DROP TABLE IF EXISTS `account`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `account` (
+  `account_id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(30) NOT NULL,
+  `email_address` varchar(100) NOT NULL,
+  `shipping_address` varchar(150) NOT NULL,
+  `hashed_password` varchar(255) NOT NULL,
+  `role` enum('driver','sponsor','admin') NOT NULL,
+  `path_to_pfp` varchar(256) DEFAULT NULL,
+  `live_account` int(1) DEFAULT '1',
+  PRIMARY KEY (`account_id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email_address` (`email_address`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `account`
+--
+
+LOCK TABLES `account` WRITE;
+/*!40000 ALTER TABLE `account` DISABLE KEYS */;
+INSERT INTO `account` VALUES (1,'admin','wholesalecrocadmin@gmail.com','123 Admins Rule, Clemson, SC','$2y$10$l6O98UNnRMj9cgAhm52b2u8tvv7P4DLRLAa12MnHYfpj6t3yLtv9S','admin',NULL,1),(2,'Thomas','tlranda@g.clemson.edu','123 Clemson Drive','$2y$10$bLK7juTjKZ.kucVIE5JVpO1KOFcyQy6TMyNl5io2w7Sc/jjhjfjju','admin',NULL,1),(3,'Pierce','pbuzhar@g.clemson.edu','477 Reports Way','$2y$10$bkFGJw/AGewVdSx41O3bce99ouDsB1UF.9EuHjTCPVie/XNbQAnPa','admin',NULL,1),(4,'Ryan','rneeves@g.clemson.edu','321 EBAY AVE','$2y$10$sxBu7V5aNUmckw2p5Sn9l.iwEn70wgK.X0So9Lc5Nf8yam0h41Kdm','admin',NULL,1),(5,'James','jdhartl@g.clemson.edu','13 Clemson Road','$2y$10$1V4R02BuqEIugdc0j2ONSeHNkf4984E9xyNd/OPf7piAnjaMwGZee','admin',NULL,1),(6,'Example User','eUse@ex.com','123 Example Drive, Clemson, SC','$2y$10$tk0rUeHgh1zYJ4XWsTYA5erz.7cbSmJYF/cj4KgN2ovuTl2akWiHS','driver',NULL,1),(7,'banned user','bannerino@banned.com','Haha fools this shipping address is invalid','$2y$10$SQDHYFVRE8beAskAp/T.de3G3WgQvV2.xFmtHp0a50/h9M3t/.I4q','driver',NULL,1),(8,'John Doe','john@doe.demo','19 Doe Road, Clemson SC','$2y$10$NmDjMDOuqNM9JPqzKMVWl.uLGdxPh6R/.zfqz8hXOxK3DYB78FlwO','driver',NULL,1),(9,'Sally Smith','sally@smith.gg','11-A Clover Apts, Greenville, SC','$2y$10$BFfPIaNjpEljvb4qZs7Q3u8euR4/hK6yR5kDCn974gahUEwv2f.2u','driver',NULL,1),(10,'David','lifeglitchartist@gmail.com','55 Somewhere Lane, Nowhere, MI','$2y$10$ZwXbDfeHZDcvpw2SQPL/JuYnck1Dzutq3s3/zaNgGCm0dyP7NwgFq','driver',NULL,1),(11,'Speed Demon McGee','speedyShipping@you.soon','321 GO, ANYWHERE, ANYTIME','$2y$10$dB6h/23/uwoplCkqsr7RjOCPhRIvWeiFwXWErWQ0FGaZYyTrQJWey','driver',NULL,1),(12,'Safe Not Sorry','tortiseWins@hare.race','8831 Victory Lane, Myrtle Beach, SC','$2y$10$ylxGxIZ7gas1qIyzElOjPewjfUZvwqpwY9ae1asOuNZTa2BKfVL2C','driver',NULL,1),(13,'Mr. Bad Driver','apolgies@everyone.else','13 Hospital Way, Sumter, SC','$2y$10$xFY1xxM8k3cyv2gXSTMz0uQET.vt4sjFBekch2RTHha5tCQGSPqOa','driver',NULL,1),(14,'Benjamin Button','100Years@sleep.demo','1 Time Drive, Wonderland','$2y$10$EJp5HgUTgtc7ZkLLk5E7WOobVhxfbdYIxY67ORKgP1bhox7JdarPq','driver',NULL,1),(15,'The New Guy','new@brandnew.justborn','7 JIT Road, Demoland, CPSCville','$2y$10$wXBrppfUgAzCnV9ocM7p1eQmmfAIKCr6odQOwyeYPp1QxvYJUdibK','driver',NULL,1),(16,'Example Sponsor','sponsor.ex@mple.org','123 Good Sponsor Way, Clemson, SC','$2y$10$GHjM4sHCkZIi8BHgGJPAIuRrSyJQAseVOElQmqId96fTMqfI11jRu','sponsor',NULL,1),(17,'Former Sponsor Account','warden@closed.org','123 Abc Xyz, Clemson, SC','$2y$10$rIjnM9oguNSoqtkz0VKA3OXBDFn194oamea5J6bSPxIEDnp5xh5Vm','sponsor',NULL,1),(18,'Best Sponsor','number1@sales.demo','2 Corporate Ladder, Clemson, SC','$2y$10$eeNtt2ona1fNYD3r4OJ/XuE1oiOv9s.Vo/o3UzVCkRgX3k4GZ4LOG','sponsor',NULL,1),(19,'Competitive Sponsor','become1@motivate.genie','n/a','$2y$10$a6fL0r3uaLdRV0oqr61Kbu0yja1.WrAm4hlA2yGaD3b1VG2TuS1q2','sponsor',NULL,1),(20,'Not Mayhem','actuallyMayhem@allstate.demo','Your Place of Interest','$2y$10$kPPxtq3p.VsC0lXBCzc6aetREZk533mEwl2rwiMUzmixmZyOjFffS','sponsor',NULL,1),(21,'Gecko Ins.','stickytoes@geico.demo','n/a','$2y$10$f6crSRHP/s4COeIHiH08e.oZ/sLraRXVFeB9BhMvXKeX/SGO.tS4a','sponsor',NULL,1),(22,'Actually Flo','flo@progressive.demo','VR Dominion #3','$2y$10$uo26XMkEZpBTrZ9TbsLlneU4yQ/clofxevG0W8Jgv0GicQvotfcmC','sponsor',NULL,1),(23,'Example Buddy','buddy.ex@mple.demo','5 Demo Way, Clemson, SC','$2y$10$1C4XcG2KTB8csETUlM2V8udL2JN91aoij5QRIhsbrXkHeOKGpHxxq','sponsor',NULL,1);
+/*!40000 ALTER TABLE `account` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `init_new_account` AFTER INSERT ON `account`
+FOR EACH ROW BEGIN
+INSERT INTO account_creation_deletion VALUES (NEW.account_id, NULL , '1');
+INSERT INTO account_bans VALUES (NEW.account_id, NULL , '0', '0', '0', '0');
+INSERT INTO email_preferences (driver_account_id) VALUES (NEW.account_id);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `account_deleted_or_restored` AFTER UPDATE ON `account`
+ FOR EACH ROW IF( OLD.live_account = '1' AND (NEW.live_account IS NULL OR NEW.live_account = '0')) THEN INSERT INTO `account_creation_deletion`
+    VALUES (NEW.account_id, NULL , NULL , NULL);
+    ELSEIF((OLD.live_account IS NULL OR OLD.live_account = '0') AND NEW.live_account = TRUE) THEN INSERT INTO `account_creation_deletion`
+    VALUES (NEW.account_id, NULL , NULL , '1');
+    END IF */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `account_bans`
+--
+
+DROP TABLE IF EXISTS `account_bans`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `account_bans` (
+  `account_id` int(11) NOT NULL,
+  `login_suspended` datetime DEFAULT NULL,
+  `product_report_mute` int(1) DEFAULT NULL,
+  `org_report_mute` int(1) DEFAULT NULL,
+  `pfp_report_mute` int(1) DEFAULT NULL,
+  `allowed_change_pfp` int(1) DEFAULT NULL,
+  KEY `account_id` (`account_id`),
+  CONSTRAINT `account_bans_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `account_bans`
+--
+
+LOCK TABLES `account_bans` WRITE;
+/*!40000 ALTER TABLE `account_bans` DISABLE KEYS */;
+INSERT INTO `account_bans` VALUES (1,NULL,0,0,0,0),(2,NULL,0,0,0,0),(3,NULL,0,0,0,0),(4,NULL,0,0,0,0),(5,NULL,0,0,0,0),(6,NULL,0,0,0,0),(7,'2019-04-14 01:19:05',1,1,1,1),(8,NULL,0,0,0,0),(9,NULL,0,0,0,0),(10,NULL,0,0,0,0),(11,NULL,0,0,0,0),(12,NULL,0,0,0,0),(13,NULL,0,0,0,0),(14,NULL,0,0,0,0),(15,NULL,0,0,0,0),(16,NULL,0,0,0,0),(17,NULL,0,0,0,0),(18,NULL,0,0,0,0),(19,NULL,0,0,0,0),(20,NULL,0,0,0,0),(21,NULL,0,0,0,0),(22,NULL,0,0,0,0),(23,NULL,0,0,0,0);
+/*!40000 ALTER TABLE `account_bans` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `account_creation_deletion`
+--
+
+DROP TABLE IF EXISTS `account_creation_deletion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `account_creation_deletion` (
+  `account_id` int(11) NOT NULL,
+  `event_time` datetime DEFAULT NULL,
+  `was_created` int(1) DEFAULT '1',
+  KEY `account_id` (`account_id`),
+  CONSTRAINT `account_creation_deletion_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `account_creation_deletion`
+--
+
+LOCK TABLES `account_creation_deletion` WRITE;
+/*!40000 ALTER TABLE `account_creation_deletion` DISABLE KEYS */;
+INSERT INTO `account_creation_deletion` VALUES (1,'2019-04-13 15:19:05',1),(2,'2019-04-13 15:19:05',1),(3,'2019-04-13 15:19:05',1),(4,'2019-04-13 15:19:05',1),(5,'2019-04-13 15:19:05',1),(6,'2019-04-13 15:19:05',1),(7,'2019-04-13 15:19:05',1),(8,'2019-04-13 15:19:05',1),(9,'2019-04-13 15:19:05',1),(10,'2019-04-13 15:19:05',1),(11,'2019-04-13 15:19:05',1),(12,'2019-04-13 15:19:05',1),(13,'2019-04-13 15:19:05',1),(14,'2019-04-13 15:19:05',1),(15,'2019-04-13 15:19:05',1),(16,'2019-04-13 15:19:05',1),(17,'2019-04-13 15:19:05',1),(18,'2019-04-13 15:19:05',1),(19,'2019-04-13 15:19:05',1),(20,'2019-04-13 15:19:05',1),(21,'2019-04-13 15:19:05',1),(22,'2019-04-13 15:19:05',1),(23,'2019-04-13 15:19:05',1);
+/*!40000 ALTER TABLE `account_creation_deletion` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `setAccountCreationDeletionDateTime` BEFORE INSERT ON `account_creation_deletion`
+FOR EACH ROW
+IF NEW.event_time IS NULL THEN SET NEW.event_time = NOW();
+END IF */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `admin_messages`
+--
+
+DROP TABLE IF EXISTS `admin_messages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `admin_messages` (
+  `admin_message_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sender_id` int(11) NOT NULL,
+  `message_contents` varchar(500) NOT NULL,
+  `sent_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`admin_message_id`),
+  KEY `sender_id` (`sender_id`),
+  CONSTRAINT `admin_messages_ibfk1` FOREIGN KEY (`sender_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admin_messages`
+--
+
+LOCK TABLES `admin_messages` WRITE;
+/*!40000 ALTER TABLE `admin_messages` DISABLE KEYS */;
+INSERT INTO `admin_messages` VALUES (1,3,'This is test of admin warning messages on the site.','2019-04-13 15:19:05');
+/*!40000 ALTER TABLE `admin_messages` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `setAdminMessageSendDateTime` BEFORE INSERT ON `admin_messages`
+FOR EACH ROW
+IF NEW.sent_time IS NULL THEN SET NEW.sent_time = NOW();
+END IF */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `catalog_item_review_flags`
+--
+
+DROP TABLE IF EXISTS `catalog_item_review_flags`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `catalog_item_review_flags` (
+  `catalog_review_id` int(11) NOT NULL,
+  `reporter_id` int(11) NOT NULL,
+  `dismissed` int(1) DEFAULT NULL,
+  KEY `catalog_review_id` (`catalog_review_id`),
+  KEY `reporter_id` (`reporter_id`),
+  CONSTRAINT `catalog_item_review_flags_ibfk_1` FOREIGN KEY (`catalog_review_id`) REFERENCES `catalog_item_reviews` (`catalog_review_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `catalog_item_review_flags_ibfk_2` FOREIGN KEY (`reporter_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `catalog_item_review_flags`
+--
+
+LOCK TABLES `catalog_item_review_flags` WRITE;
+/*!40000 ALTER TABLE `catalog_item_review_flags` DISABLE KEYS */;
+INSERT INTO `catalog_item_review_flags` VALUES (1,9,0),(1,10,1);
+/*!40000 ALTER TABLE `catalog_item_review_flags` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `catalog_item_review_responses`
+--
+
+DROP TABLE IF EXISTS `catalog_item_review_responses`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `catalog_item_review_responses` (
+  `respond_to_review_id` int(11) NOT NULL,
+  `account_id` int(11) NOT NULL,
+  `response` varchar(500) NOT NULL,
+  `is_deleted` int(1) DEFAULT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  KEY `respond_to_review_id` (`respond_to_review_id`),
+  KEY `account_id` (`account_id`),
+  CONSTRAINT `catalog_item_review_responses_ibfk_1` FOREIGN KEY (`respond_to_review_id`) REFERENCES `catalog_item_reviews` (`catalog_review_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `catalog_item_review_responses_ibfk_2` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `catalog_item_review_responses`
+--
+
+LOCK TABLES `catalog_item_review_responses` WRITE;
+/*!40000 ALTER TABLE `catalog_item_review_responses` DISABLE KEYS */;
+INSERT INTO `catalog_item_review_responses` VALUES (1,16,'Glad you reviewed the item! Enjoy!',0,'2019-04-13 15:19:05');
+/*!40000 ALTER TABLE `catalog_item_review_responses` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `setCatalogItemReveiwResponseCreationDateTime` BEFORE INSERT ON `catalog_item_review_responses`
+FOR EACH ROW
+IF NEW.creation_time IS NULL THEN SET NEW.creation_time = NOW();
+END IF */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `catalog_item_reviews`
+--
+
+DROP TABLE IF EXISTS `catalog_item_reviews`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `catalog_item_reviews` (
+  `catalog_review_id` int(11) NOT NULL AUTO_INCREMENT,
+  `catalog_id` int(11) NOT NULL,
+  `driver_account_id` int(11) NOT NULL,
+  `rating` int(11) NOT NULL,
+  `review` varchar(500) DEFAULT NULL,
+  `is_deleted` int(1) DEFAULT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`catalog_review_id`),
+  KEY `catalog_id` (`catalog_id`),
+  KEY `driver_account_id` (`driver_account_id`),
+  CONSTRAINT `catalog_item_reviews_ibfk_1` FOREIGN KEY (`catalog_id`) REFERENCES `catalog_items` (`catalog_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `catalog_item_reviews_ibfk_2` FOREIGN KEY (`driver_account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `catalog_item_reviews`
+--
+
+LOCK TABLES `catalog_item_reviews` WRITE;
+/*!40000 ALTER TABLE `catalog_item_reviews` DISABLE KEYS */;
+INSERT INTO `catalog_item_reviews` VALUES (1,1,6,3,'I left a review!',0,'2019-04-13 15:19:05'),(2,2,8,1,'This review should be deleted',1,'2019-04-13 15:19:05');
+/*!40000 ALTER TABLE `catalog_item_reviews` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `setCreationDateTime` BEFORE INSERT ON `catalog_item_reviews`
+FOR EACH ROW
+IF NEW.creation_time IS NULL THEN SET NEW.creation_time = NOW();
+END IF */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `catalog_items`
+--
+
+DROP TABLE IF EXISTS `catalog_items`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `catalog_items` (
+  `catalog_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sponsor_org_id` int(11) NOT NULL,
+  `api_reference` varchar(200) DEFAULT NULL,
+  `product_name` varchar(50) NOT NULL,
+  `category` varchar(50) NOT NULL,
+  `product_description` varchar(500) DEFAULT NULL,
+  `product_visible` int(1) DEFAULT '1',
+  `product_deleted` int(1) DEFAULT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  `gallery_pic` varchar(255) DEFAULT NULL,
+  `url` varchar(255) NOT NULL,
+  `unit_price` double NOT NULL,
+  PRIMARY KEY (`catalog_id`),
+  KEY `sponsor_org_id` (`sponsor_org_id`),
+  CONSTRAINT `catalog_items_ibfk_1` FOREIGN KEY (`sponsor_org_id`) REFERENCES `sponsor_org` (`sponsor_org_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `catalog_items`
+--
+
+LOCK TABLES `catalog_items` WRITE;
+/*!40000 ALTER TABLE `catalog_items` DISABLE KEYS */;
+INSERT INTO `catalog_items` VALUES (1,1,'323758657638','Military High Power Green Laser Pointer Lazer Pen','Toy',NULL,1,NULL,'2019-04-13 15:19:05','http://thumbs3.ebaystatic.com/m/mbscIm-8TbC7AqVShs1tXRA/140.jpg','http://www.ebay.com/itm/Military-High-Power-Green-Laser-Pointer-Lazer-Pen-Star-Cap-18650-Battery-USA-/323758657638',7.5),(2,1,'123714280111','Revoltech Yamaguchi No. 31  Robo Getter 1 Figure','Toy',NULL,1,NULL,'2019-04-13 15:19:05','http://thumbs4.ebaystatic.com/m/mqlNYS0pIkjvWubNLNfXMew/140.jpg','http://www.ebay.com/itm/Revoltech-Yamaguchi-No-31-Robo-Getter-1-Figure-/123714280111',19.8),(3,2,'382892077729','[P..D..F]  The C++  Programming language','Textbooks, Education',NULL,1,NULL,'2019-04-13 15:19:05','http://thumbs2.ebaystatic.com/m/mg4kztCNHIfZPlOTiAoj29g/140.jpg','http://www.ebay.com/itm/P-D-F-C-Programming-language-/382892077729',1.49),(4,2,'382859622331','[P..D..F]  PHP MYSQL & JavaScript all-in-one for d','Textbooks, Education',NULL,1,NULL,'2019-04-13 15:19:05','http://thumbs4.ebaystatic.com/m/mx6JLY1wFOSFwQWSIGYruyA/140.jpg','http://www.ebay.com/itm/P-D-F-PHP-MYSQL-JavaScript-all-in-one-dummies-/382859622331',1.49),(5,3,'143182074593','61 Key Digital Music Electronic Keyboard 4 Kids','Electronic Keyboards',NULL,1,NULL,'2019-04-13 15:19:05','http://thumbs2.ebaystatic.com/m/mqnfx95TrCDM--6uR73qsyQ/140.jpg','http://www.ebay.com/itm/61-Key-Digital-Music-Electronic-Keyboard-Kids-Electric-Piano-Organ-w-Microphone-/143182074593',22.99),(6,3,'173344518504','mini Wireless Keyboard Touchpad','Keyboards',NULL,1,NULL,'2019-04-13 15:19:05','http://thumbs1.ebaystatic.com/m/m7d1koei4YII50vxAvkfIWw/140.jpg','http://www.ebay.com/itm/mini-i8-2-4GHZ-mini-Wireless-Keyboard-Touchpad-Smart-TV-Android-Box-PC-HTPC-/173344518504',8.95),(7,4,'173576084693','Strawberry Seeds','Seeds & Bulbs',NULL,1,NULL,'2019-04-13 15:19:05','http://thumbs2.ebaystatic.com/m/mqxtvbxwsuWvoe0obw3fKbg/140.jpg','http://www.ebay.com/itm/Strawberry-One-Time-Fragaria-Ananassa-25-Seeds-/173576084693',1.89),(8,4,'233003612853','Men\'s Running Shoes','Athletic Shoes',NULL,1,NULL,'2019-04-13 15:19:05','http://thumbs2.ebaystatic.com/pict/233003612853404000000001_1.jpg','http://www.ebay.com/itm/Mens-Fashion-Running-Breathable-Shoes-Sports-Casual-Walking-Athletic-Sneakers-/233003612853?var=532516946970',19.99);
+/*!40000 ALTER TABLE `catalog_items` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `setProductCreationDateTime` BEFORE INSERT ON `catalog_items`
+FOR EACH ROW
+IF NEW.creation_time IS NULL THEN SET NEW.creation_time = NOW();
+END IF */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `closed_sponsor_keys`
+--
+
+DROP TABLE IF EXISTS `closed_sponsor_keys`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `closed_sponsor_keys` (
+  `sponsor_org_id` int(11) NOT NULL,
+  `key_creator_id` int(11) NOT NULL,
+  `key_redeemer_id` int(11) DEFAULT NULL,
+  `join_key` varchar(50) NOT NULL,
+  `status` enum('pending','used','deactivated') NOT NULL DEFAULT 'pending',
+  `creation_time` datetime DEFAULT NULL,
+  KEY `sponsor_org_id` (`sponsor_org_id`),
+  KEY `key_creator_id` (`key_creator_id`),
+  KEY `key_redeemer_id` (`key_redeemer_id`),
+  CONSTRAINT `closed_sponsor_keys_ibfk_1` FOREIGN KEY (`sponsor_org_id`) REFERENCES `sponsor_org` (`sponsor_org_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `closed_sponsor_keys_ibfk_2` FOREIGN KEY (`key_creator_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `closed_sponsor_keys_ibfk_3` FOREIGN KEY (`key_redeemer_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `closed_sponsor_keys`
+--
+
+LOCK TABLES `closed_sponsor_keys` WRITE;
+/*!40000 ALTER TABLE `closed_sponsor_keys` DISABLE KEYS */;
+INSERT INTO `closed_sponsor_keys` VALUES (2,17,9,'missedOpportunity','deactivated','2019-04-13 15:19:05'),(2,17,8,'JOINTHEORG','used','2019-04-13 15:19:05'),(2,17,7,'keyToBeDeactivated','pending','2019-04-13 15:19:05'),(2,17,6,'joinUs!','used','2019-04-13 15:19:05');
+/*!40000 ALTER TABLE `closed_sponsor_keys` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `setKeyCreationDateTime` BEFORE INSERT ON `closed_sponsor_keys`
+FOR EACH ROW
+IF NEW.creation_time IS NULL THEN SET NEW.creation_time = NOW();
+END IF */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `driver_cart`
+--
+
+DROP TABLE IF EXISTS `driver_cart`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `driver_cart` (
+  `driver_account_id` int(11) NOT NULL,
+  `catalog_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  KEY `driver_account_id` (`driver_account_id`),
+  KEY `catalog_id` (`catalog_id`),
+  CONSTRAINT `driver_cart_ibfk_1` FOREIGN KEY (`driver_account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `driver_cart_ibfk_2` FOREIGN KEY (`catalog_id`) REFERENCES `catalog_items` (`catalog_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `driver_cart`
+--
+
+LOCK TABLES `driver_cart` WRITE;
+/*!40000 ALTER TABLE `driver_cart` DISABLE KEYS */;
+INSERT INTO `driver_cart` VALUES (8,2,3);
+/*!40000 ALTER TABLE `driver_cart` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `driver_changes_org`
+--
+
+DROP TABLE IF EXISTS `driver_changes_org`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `driver_changes_org` (
+  `driver_account_id` int(11) NOT NULL,
+  `sponsor_org_id` int(11) NOT NULL,
+  `joined_org` int(1) DEFAULT '1',
+  `event_time` datetime DEFAULT NULL,
+  KEY `driver_account_id` (`driver_account_id`),
+  KEY `sponsor_org_id` (`sponsor_org_id`),
+  CONSTRAINT `driver_changes_org_ibfk_1` FOREIGN KEY (`driver_account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `driver_changes_org_ibfk_2` FOREIGN KEY (`sponsor_org_id`) REFERENCES `sponsor_org` (`sponsor_org_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `driver_changes_org`
+--
+
+LOCK TABLES `driver_changes_org` WRITE;
+/*!40000 ALTER TABLE `driver_changes_org` DISABLE KEYS */;
+INSERT INTO `driver_changes_org` VALUES (16,1,1,'2019-04-13 15:19:05'),(17,2,1,'2019-04-13 15:19:05'),(18,1,1,'2019-04-13 15:19:05'),(19,3,1,'2019-04-13 15:19:05'),(20,4,1,'2019-04-13 15:19:05'),(21,3,1,'2019-04-13 15:19:05'),(22,2,1,'2019-04-13 15:19:05'),(23,4,1,'2019-04-13 15:19:05'),(6,1,1,'2019-04-13 15:19:05'),(6,2,1,'2019-04-13 15:19:05'),(7,1,1,'2019-04-13 15:19:05'),(8,1,1,'2019-04-13 15:19:05'),(8,2,1,'2019-04-13 15:19:05'),(9,1,1,'2019-04-13 15:19:05'),(10,3,1,'2019-04-13 15:19:05'),(10,4,1,'2019-04-13 15:19:05'),(11,2,1,'2019-04-13 15:19:05'),(12,1,1,'2019-04-13 15:19:05'),(12,2,1,'2019-04-13 15:19:05'),(12,3,1,'2019-04-13 15:19:05'),(12,4,1,'2019-04-13 15:19:05'),(13,1,1,'2019-04-13 15:19:05'),(13,2,1,'2019-04-13 15:19:05'),(13,3,1,'2019-04-13 15:19:05'),(13,4,1,'2019-04-13 15:19:05'),(14,3,1,'2019-04-13 15:19:05'),(15,2,1,'2019-04-13 15:19:05'),(7,1,0,'2019-04-13 15:19:05'),(13,1,0,'2019-04-13 15:19:05'),(13,2,0,'2019-04-13 15:19:05'),(13,3,0,'2019-04-13 15:19:05');
+/*!40000 ALTER TABLE `driver_changes_org` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `setJoinLeaveDateTime` BEFORE INSERT ON `driver_changes_org`
+FOR EACH ROW
+IF NEW.event_time IS NULL THEN SET NEW.event_time = NOW();
+END IF */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `driver_in_org`
+--
+
+DROP TABLE IF EXISTS `driver_in_org`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `driver_in_org` (
+  `driver_account_id` int(11) NOT NULL,
+  `sponsor_org_id` int(11) NOT NULL,
+  KEY `driver_account_id` (`driver_account_id`),
+  KEY `sponsor_org_id` (`sponsor_org_id`),
+  CONSTRAINT `driver_in_org_ibfk_1` FOREIGN KEY (`driver_account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `driver_in_org_ibfk_2` FOREIGN KEY (`sponsor_org_id`) REFERENCES `sponsor_org` (`sponsor_org_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `driver_in_org`
+--
+
+LOCK TABLES `driver_in_org` WRITE;
+/*!40000 ALTER TABLE `driver_in_org` DISABLE KEYS */;
+INSERT INTO `driver_in_org` VALUES (16,1),(17,2),(18,1),(19,3),(20,4),(21,3),(22,2),(23,4),(6,1),(6,2),(8,1),(8,2),(9,1),(10,3),(10,4),(11,2),(12,1),(12,2),(12,3),(12,4),(13,4),(14,3),(15,2);
+/*!40000 ALTER TABLE `driver_in_org` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `driver_enters_org` BEFORE INSERT ON `driver_in_org`
+ FOR EACH ROW INSERT INTO `driver_changes_org` VALUES (NEW.driver_account_id, NEW.sponsor_org_id, 1, NOW()) */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `driver_leaves_org` BEFORE DELETE ON `driver_in_org`
+ FOR EACH ROW INSERT INTO `driver_changes_org` VALUES (OLD.driver_account_id, OLD.sponsor_org_id, 0, NOW()) */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `driver_wish_list`
+--
+
+DROP TABLE IF EXISTS `driver_wish_list`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `driver_wish_list` (
+  `driver_account_id` int(11) NOT NULL,
+  `catalog_id` int(11) NOT NULL,
+  KEY `catalog_id` (`catalog_id`),
+  KEY `driver_account_id` (`driver_account_id`),
+  CONSTRAINT `driver_wish_list_ibfk_1` FOREIGN KEY (`driver_account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `driver_wish_list_ibfk_2` FOREIGN KEY (`catalog_id`) REFERENCES `catalog_items` (`catalog_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `driver_wish_list`
+--
+
+LOCK TABLES `driver_wish_list` WRITE;
+/*!40000 ALTER TABLE `driver_wish_list` DISABLE KEYS */;
+/*!40000 ALTER TABLE `driver_wish_list` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `email_preferences`
+--
+
+DROP TABLE IF EXISTS `email_preferences`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `email_preferences` (
+  `driver_account_id` int(11) NOT NULL,
+  `order_problem` int(11) DEFAULT '1',
+  `order_placed` int(11) DEFAULT '1',
+  `points_changed` int(11) DEFAULT '1',
+  KEY `email_preferences_ibfk_1` (`driver_account_id`),
+  CONSTRAINT `email_preferences_ibfk_1` FOREIGN KEY (`driver_account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `email_preferences`
+--
+
+LOCK TABLES `email_preferences` WRITE;
+/*!40000 ALTER TABLE `email_preferences` DISABLE KEYS */;
+INSERT INTO `email_preferences` VALUES (1,1,1,1),(2,1,1,1),(3,1,1,1),(4,1,1,1),(5,1,1,1),(6,1,1,1),(7,NULL,NULL,NULL),(8,1,1,1),(9,1,1,1),(10,1,1,1),(11,1,1,1),(12,1,1,1),(13,1,1,1),(14,1,1,1),(15,1,1,1),(16,1,1,1),(17,1,1,1),(18,1,1,1),(19,1,1,1),(20,1,1,1),(21,1,1,1),(22,1,1,1),(23,1,1,1);
+/*!40000 ALTER TABLE `email_preferences` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `invalid_password_log`
+--
+
+DROP TABLE IF EXISTS `invalid_password_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `invalid_password_log` (
+  `account_id` int(11) NOT NULL,
+  `log_time` datetime DEFAULT NULL,
+  KEY `account_id` (`account_id`),
+  CONSTRAINT `invalid_password_log_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `invalid_password_log`
+--
+
+LOCK TABLES `invalid_password_log` WRITE;
+/*!40000 ALTER TABLE `invalid_password_log` DISABLE KEYS */;
+INSERT INTO `invalid_password_log` VALUES (9,'2019-04-13 15:19:05');
+/*!40000 ALTER TABLE `invalid_password_log` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `setInvalidPasswordDateTime` BEFORE INSERT ON `invalid_password_log`
+FOR EACH ROW
+IF NEW.log_time IS NULL THEN SET NEW.log_time = NOW();
+END IF */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `item_transactions`
+--
+
+DROP TABLE IF EXISTS `item_transactions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `item_transactions` (
+  `order_id` int(11) NOT NULL,
+  `point_transaction_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `quantity_change` int(11) NOT NULL,
+  KEY `order_id` (`order_id`),
+  KEY `point_transaction_id` (`point_transaction_id`),
+  KEY `item_id` (`item_id`),
+  CONSTRAINT `item_transactions_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order_transactions` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `item_transactions_ibfk_2` FOREIGN KEY (`point_transaction_id`) REFERENCES `point_transactions` (`point_change_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `item_transactions_ibfk_3` FOREIGN KEY (`item_id`) REFERENCES `catalog_items` (`catalog_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `item_transactions`
+--
+
+LOCK TABLES `item_transactions` WRITE;
+/*!40000 ALTER TABLE `item_transactions` DISABLE KEYS */;
+INSERT INTO `item_transactions` VALUES (1,3,1,20),(1,4,2,5),(2,5,1,3),(3,6,1,1),(4,7,2,3),(5,8,1,1);
+/*!40000 ALTER TABLE `item_transactions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `open_sponsor_applications`
+--
+
+DROP TABLE IF EXISTS `open_sponsor_applications`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `open_sponsor_applications` (
+  `driver_account_id` int(11) NOT NULL,
+  `sponsor_org_id` int(11) NOT NULL,
+  `auth_account_id` int(11) DEFAULT NULL,
+  `status` enum('pending','accepted','rejected') NOT NULL DEFAULT 'pending',
+  `creation_time` datetime DEFAULT NULL,
+  KEY `driver_account_id` (`driver_account_id`),
+  KEY `sponsor_org_id` (`sponsor_org_id`),
+  KEY `auth_account_id` (`auth_account_id`),
+  CONSTRAINT `open_sponsor_applications_ibfk_1` FOREIGN KEY (`driver_account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `open_sponsor_applications_ibfk_2` FOREIGN KEY (`sponsor_org_id`) REFERENCES `sponsor_org` (`sponsor_org_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `open_sponsor_applications_ibfk_3` FOREIGN KEY (`auth_account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `open_sponsor_applications`
+--
+
+LOCK TABLES `open_sponsor_applications` WRITE;
+/*!40000 ALTER TABLE `open_sponsor_applications` DISABLE KEYS */;
+INSERT INTO `open_sponsor_applications` VALUES (6,1,18,'accepted','2019-04-13 15:19:05'),(7,1,16,'accepted','2019-04-13 15:19:05'),(8,1,16,'accepted','2019-04-13 15:19:05'),(9,1,18,'accepted','2019-04-13 15:19:05'),(12,1,18,'accepted','2019-04-13 15:19:05'),(13,1,18,'accepted','2019-04-13 15:19:05'),(6,2,17,'accepted','2019-04-13 15:19:05'),(8,2,22,'accepted','2019-04-13 15:19:05'),(11,2,22,'accepted','2019-04-13 15:19:05'),(12,2,22,'accepted','2019-04-13 15:19:05'),(15,2,22,'accepted','2019-04-13 15:19:05'),(10,3,19,'accepted','2019-04-13 15:19:05'),(12,3,21,'accepted','2019-04-13 15:19:05'),(14,3,19,'accepted','2019-04-13 15:19:05'),(10,4,20,'accepted','2019-04-13 15:19:05'),(12,4,23,'accepted','2019-04-13 15:19:05'),(13,4,20,'accepted','2019-04-13 15:19:05'),(13,2,22,'rejected','2019-04-13 15:19:05'),(11,3,21,'rejected','2019-04-13 15:19:05'),(6,3,19,'rejected','2019-04-13 15:19:05'),(6,4,23,'rejected','2019-04-13 15:19:05'),(7,2,17,'rejected','2019-04-13 15:19:05'),(11,1,NULL,'pending','2019-04-13 15:19:05'),(13,1,NULL,'pending','2019-04-13 15:19:05'),(10,2,NULL,'pending','2019-04-13 15:19:05'),(7,3,NULL,'pending','2019-04-13 15:19:05'),(8,3,NULL,'pending','2019-04-13 15:19:05'),(9,4,NULL,'pending','2019-04-13 15:19:05'),(11,4,NULL,'pending','2019-04-13 15:19:05');
+/*!40000 ALTER TABLE `open_sponsor_applications` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `setApplicationSubmissionDateTime` BEFORE INSERT ON `open_sponsor_applications`
+FOR EACH ROW
+IF NEW.creation_time IS NULL THEN SET NEW.creation_time = NOW();
+END IF */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `open_sponsor_review_flags`
+--
+
+DROP TABLE IF EXISTS `open_sponsor_review_flags`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `open_sponsor_review_flags` (
+  `sponsor_review_id` int(11) NOT NULL,
+  `reporter_id` int(11) NOT NULL,
+  `dismissed` int(1) DEFAULT NULL,
+  KEY `sponsor_review_id` (`sponsor_review_id`),
+  KEY `reporter_id` (`reporter_id`),
+  CONSTRAINT `open_sponsor_review_flags_ibfk_1` FOREIGN KEY (`sponsor_review_id`) REFERENCES `open_sponsor_reviews` (`sponsor_review_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `open_sponsor_review_flags_ibfk_2` FOREIGN KEY (`reporter_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `open_sponsor_review_flags`
+--
+
+LOCK TABLES `open_sponsor_review_flags` WRITE;
+/*!40000 ALTER TABLE `open_sponsor_review_flags` DISABLE KEYS */;
+INSERT INTO `open_sponsor_review_flags` VALUES (2,10,1);
+/*!40000 ALTER TABLE `open_sponsor_review_flags` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `open_sponsor_review_replies`
+--
+
+DROP TABLE IF EXISTS `open_sponsor_review_replies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `open_sponsor_review_replies` (
+  `respond_to_review_id` int(11) NOT NULL,
+  `account_id` int(11) NOT NULL,
+  `reply_depth` int(11) NOT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  `response` varchar(500) NOT NULL,
+  `is_deleted` int(1) DEFAULT NULL,
+  KEY `respond_to_review_id` (`respond_to_review_id`),
+  KEY `account_id` (`account_id`),
+  CONSTRAINT `open_sponsor_review_replies_ibfk_1` FOREIGN KEY (`respond_to_review_id`) REFERENCES `open_sponsor_reviews` (`sponsor_review_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `open_sponsor_review_replies_ibfk_2` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `open_sponsor_review_replies`
+--
+
+LOCK TABLES `open_sponsor_review_replies` WRITE;
+/*!40000 ALTER TABLE `open_sponsor_review_replies` DISABLE KEYS */;
+INSERT INTO `open_sponsor_review_replies` VALUES (2,18,1,'2019-04-13 15:19:05','Gotcha, deleted it!',0);
+/*!40000 ALTER TABLE `open_sponsor_review_replies` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `setOpenSponsorReviewRepliesDateTime` BEFORE INSERT ON `open_sponsor_review_replies`
+FOR EACH ROW
+IF NEW.creation_time IS NULL THEN SET NEW.creation_time = NOW();
+END IF */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `open_sponsor_reviews`
+--
+
+DROP TABLE IF EXISTS `open_sponsor_reviews`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `open_sponsor_reviews` (
+  `sponsor_review_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sponsor_org_id` int(11) NOT NULL,
+  `driver_account_id` int(11) NOT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  `rating` int(11) NOT NULL,
+  `review` varchar(500) DEFAULT NULL,
+  `is_deleted` int(1) DEFAULT NULL,
+  PRIMARY KEY (`sponsor_review_id`),
+  KEY `sponsor_org_id` (`sponsor_org_id`),
+  KEY `driver_account_id` (`driver_account_id`),
+  CONSTRAINT `open_sponsor_reviews_ibfk_1` FOREIGN KEY (`sponsor_org_id`) REFERENCES `sponsor_org` (`sponsor_org_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `open_sponsor_reviews_ibfk_2` FOREIGN KEY (`driver_account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `open_sponsor_reviews`
+--
+
+LOCK TABLES `open_sponsor_reviews` WRITE;
+/*!40000 ALTER TABLE `open_sponsor_reviews` DISABLE KEYS */;
+INSERT INTO `open_sponsor_reviews` VALUES (1,1,6,'2019-04-13 15:19:05',3,'I like this org.',0),(2,1,8,'2019-04-13 15:19:05',3,'Whoops. This should have been deleted.',1);
+/*!40000 ALTER TABLE `open_sponsor_reviews` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `setOpenSponsorReviewDateTime` BEFORE INSERT ON `open_sponsor_reviews`
+FOR EACH ROW
+IF NEW.creation_time IS NULL THEN SET NEW.creation_time = NOW();
+END IF */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `order_transactions`
+--
+
+DROP TABLE IF EXISTS `order_transactions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `order_transactions` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `driver_account_id` int(11) NOT NULL,
+  `auth_account_id` int(11) NOT NULL,
+  `sponsor_org_id` int(11) NOT NULL,
+  `shipping_address` varchar(150) NOT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  `fulfill_time` datetime DEFAULT NULL,
+  `problem` varchar(250) DEFAULT NULL,
+  `complain` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`order_id`),
+  KEY `driver_account_id` (`driver_account_id`),
+  KEY `auth_account_id` (`auth_account_id`),
+  KEY `sponsor_org_id` (`sponsor_org_id`),
+  CONSTRAINT `order_transactions_ibfk_1` FOREIGN KEY (`driver_account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `order_transactions_ibfk_2` FOREIGN KEY (`auth_account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `order_transactions_ibfk_3` FOREIGN KEY (`sponsor_org_id`) REFERENCES `sponsor_org` (`sponsor_org_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order_transactions`
+--
+
+LOCK TABLES `order_transactions` WRITE;
+/*!40000 ALTER TABLE `order_transactions` DISABLE KEYS */;
+INSERT INTO `order_transactions` VALUES (1,6,6,1,'123 Example Dr., Clemson, SC','2019-03-14 15:19:05','2019-03-17 15:19:05',NULL,NULL),(2,6,16,1,'home','2019-04-03 15:19:05','2019-04-09 15:19:05',NULL,'Not a complaint, thanks for making this order for me, Sponsor!'),(3,6,6,1,'invalid_address','2019-04-09 11:19:05','2019-04-12 03:19:05',NULL,NULL),(4,6,16,1,'123 Example Drive, Clemson, SC','2019-04-12 13:19:05',NULL,NULL,NULL),(5,6,1,1,'123 Example Drive, Clemson, SC','2019-04-13 15:20:46',NULL,NULL,NULL);
+/*!40000 ALTER TABLE `order_transactions` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `setOrderCreationDateTime` BEFORE INSERT ON `order_transactions`
+FOR EACH ROW
+IF NEW.creation_time IS NULL THEN SET NEW.creation_time = NOW();
+END IF */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `org_logo_bans`
+--
+
+DROP TABLE IF EXISTS `org_logo_bans`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `org_logo_bans` (
+  `banned_org_id` int(11) NOT NULL,
+  UNIQUE KEY `banned_org_id` (`banned_org_id`),
+  KEY `banned_org_id_2` (`banned_org_id`),
+  CONSTRAINT `org_logo_bans_ibfk_1` FOREIGN KEY (`banned_org_id`) REFERENCES `sponsor_org` (`sponsor_org_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `org_logo_bans`
+--
+
+LOCK TABLES `org_logo_bans` WRITE;
+/*!40000 ALTER TABLE `org_logo_bans` DISABLE KEYS */;
+INSERT INTO `org_logo_bans` VALUES (2);
+/*!40000 ALTER TABLE `org_logo_bans` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `password_resets`
+--
+
+DROP TABLE IF EXISTS `password_resets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `password_resets` (
+  `account_id` int(11) NOT NULL,
+  `reset_requested_by_id` int(11) DEFAULT NULL,
+  `temp_hashed_password` varchar(255) DEFAULT NULL,
+  `creation_time` datetime DEFAULT NULL,
+  `reset_complete` int(1) DEFAULT NULL,
+  `force_reset` int(1) DEFAULT NULL,
+  KEY `account_id` (`account_id`),
+  KEY `reset_requested_by_id` (`reset_requested_by_id`),
+  CONSTRAINT `password_resets_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `password_resets_ibfk_2` FOREIGN KEY (`reset_requested_by_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+LOCK TABLES `password_resets` WRITE;
+/*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
+INSERT INTO `password_resets` VALUES (6,NULL,'$2y$10$xCuasL6S8m0XPAG.GBDW/OHdbWsg56OqZWUcWL.QmSghxz2yIbcg2','2019-04-13 15:19:05',1,NULL),(8,16,NULL,'2019-04-13 15:19:05',NULL,1);
+/*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `setPasswordResetDateTime` BEFORE INSERT ON `password_resets`
+FOR EACH ROW
+IF NEW.creation_time IS NULL THEN SET NEW.creation_time = NOW();
+END IF */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `point_transactions`
+--
+
+DROP TABLE IF EXISTS `point_transactions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `point_transactions` (
+  `point_change_id` int(11) NOT NULL AUTO_INCREMENT,
+  `driver_account_id` int(11) NOT NULL,
+  `auth_account_id` int(11) NOT NULL,
+  `sponsor_org_id` int(11) NOT NULL,
+  `point_change_amt` int(11) NOT NULL,
+  `change_time` datetime DEFAULT NULL,
+  `change_reason` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`point_change_id`),
+  KEY `driver_account_id` (`driver_account_id`),
+  KEY `auth_account_id` (`auth_account_id`),
+  KEY `sponsor_org_id` (`sponsor_org_id`),
+  CONSTRAINT `point_transactions_ibfk_1` FOREIGN KEY (`driver_account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `point_transactions_ibfk_2` FOREIGN KEY (`auth_account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `point_transactions_ibfk_3` FOREIGN KEY (`sponsor_org_id`) REFERENCES `sponsor_org` (`sponsor_org_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `point_transactions`
+--
+
+LOCK TABLES `point_transactions` WRITE;
+/*!40000 ALTER TABLE `point_transactions` DISABLE KEYS */;
+INSERT INTO `point_transactions` VALUES (1,6,16,1,500,'2019-01-01 05:05:05','Joining bonus'),(2,7,16,1,500,'2019-01-01 05:05:10','Joining bonus'),(3,6,6,1,-200,'2019-03-14 15:19:05','Order #1'),(4,6,6,1,-100,'2019-03-14 15:19:05','Order #1'),(5,6,16,1,-30,'2019-04-03 15:19:05','Order #2'),(6,6,6,1,-10,'2019-04-09 11:19:05','Order #3'),(7,6,16,1,-20,'2019-04-12 13:19:05','Order #4'),(8,6,1,1,-75,'2019-04-13 15:20:46','Order #5'),(9,8,1,1,4,'2019-04-13 19:18:52',''),(10,8,1,1,-3,'2019-04-13 19:18:58','bad');
+/*!40000 ALTER TABLE `point_transactions` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `setPointChangeDateTime` BEFORE INSERT ON `point_transactions`
+FOR EACH ROW
+IF NEW.change_time IS NULL THEN SET NEW.change_time = NOW();
+END IF */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `profile_picture_flags`
+--
+
+DROP TABLE IF EXISTS `profile_picture_flags`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `profile_picture_flags` (
+  `account_id` int(11) NOT NULL,
+  `reporter_id` int(11) NOT NULL,
+  `dismissed` int(1) DEFAULT NULL,
+  KEY `account_id` (`account_id`),
+  KEY `reporter_id` (`reporter_id`),
+  CONSTRAINT `profile_picture_flags_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `profile_picture_flags_ibfk_2` FOREIGN KEY (`reporter_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `profile_picture_flags`
+--
+
+LOCK TABLES `profile_picture_flags` WRITE;
+/*!40000 ALTER TABLE `profile_picture_flags` DISABLE KEYS */;
+INSERT INTO `profile_picture_flags` VALUES (7,1,1);
+/*!40000 ALTER TABLE `profile_picture_flags` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sponsor_org`
+--
+
+DROP TABLE IF EXISTS `sponsor_org`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sponsor_org` (
+  `sponsor_org_id` int(11) NOT NULL AUTO_INCREMENT,
+  `org_name` varchar(50) NOT NULL,
+  `org_email_address` varchar(100) NOT NULL,
+  `org_bio` varchar(500) DEFAULT NULL,
+  `org_url` varchar(256) DEFAULT NULL,
+  `path_to_org_logo` varchar(256) DEFAULT NULL,
+  `points_to_dollars` double NOT NULL,
+  `application_open` int(1) DEFAULT '1',
+  `live_org` int(1) DEFAULT '1',
+  PRIMARY KEY (`sponsor_org_id`),
+  UNIQUE KEY `org_name` (`org_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sponsor_org`
+--
+
+LOCK TABLES `sponsor_org` WRITE;
+/*!40000 ALTER TABLE `sponsor_org` DISABLE KEYS */;
+INSERT INTO `sponsor_org` VALUES (1,'Example Org','Ex@mple.org','This is an example organization bio, but not all orgs have to have one','https://www.example.org',NULL,10,1,1),(2,'Progressive Org','flow@progressive.com','Switch to save today','https://www.progressive.com',NULL,15,1,NULL),(3,'Geico','gecko@geicoinsurance.com','15% could save you... 15 points','https://www.geico.com',NULL,12.75,1,NULL),(4,'Allstate','mayhem@goodhands.com','Join us to cover you against Mayhem, like me','https://allstate.com',NULL,100,1,NULL);
+/*!40000 ALTER TABLE `sponsor_org` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `init_new_org` AFTER INSERT ON `sponsor_org`
+FOR EACH ROW BEGIN
+INSERT INTO sponsor_org_creation_deletion VALUES (NEW.sponsor_org_id, NULL , '1');
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `org_deleted_or_restored` AFTER UPDATE ON `sponsor_org`
+ FOR EACH ROW IF(OLD.live_org IS NOT NULL AND (NEW.live_org IS NULL OR NEW.live_org = 0)) THEN INSERT INTO `sponsor_org_creation_deletion` (`sponsor_org_id`, `was_created`)
+    VALUES (NEW.sponsor_org_id, 0);
+    ELSEIF((OLD.live_org IS NULL OR OLD.live_org = '0') AND NEW.live_org IS NOT NULL) THEN INSERT INTO `sponsor_org_creation_deletion` (`sponsor_org_id`, `was_created`)
+    VALUES (NEW.sponsor_org_id, 1);
+    END IF */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `sponsor_org_creation_deletion`
+--
+
+DROP TABLE IF EXISTS `sponsor_org_creation_deletion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sponsor_org_creation_deletion` (
+  `sponsor_org_id` int(11) NOT NULL,
+  `event_time` datetime DEFAULT NULL,
+  `was_created` int(1) DEFAULT '1',
+  KEY `sponsor_org_id` (`sponsor_org_id`),
+  CONSTRAINT `sponsor_org_c_d_ibfk_1` FOREIGN KEY (`sponsor_org_id`) REFERENCES `sponsor_org` (`sponsor_org_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sponsor_org_creation_deletion`
+--
+
+LOCK TABLES `sponsor_org_creation_deletion` WRITE;
+/*!40000 ALTER TABLE `sponsor_org_creation_deletion` DISABLE KEYS */;
+INSERT INTO `sponsor_org_creation_deletion` VALUES (1,'2019-04-13 15:19:05',1),(2,'2019-04-13 15:19:05',1),(3,'2019-04-13 15:19:05',1),(4,'2019-04-13 15:19:05',1),(2,'2019-04-13 17:58:14',0),(3,'2019-04-13 17:58:15',0),(4,'2019-04-13 17:58:15',0),(1,'2019-04-13 17:58:16',0),(1,'2019-04-13 19:46:24',1),(1,'2019-04-13 19:47:33',0),(1,'2019-04-13 19:52:21',1),(1,'2019-04-13 19:53:46',0),(1,'2019-04-13 19:56:29',1);
+/*!40000 ALTER TABLE `sponsor_org_creation_deletion` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `setDateCreateOrg` BEFORE INSERT ON `sponsor_org_creation_deletion`
+ FOR EACH ROW SET NEW.event_time = NOW() */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `unrecognized_login`
+--
+
+DROP TABLE IF EXISTS `unrecognized_login`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `unrecognized_login` (
+  `account_id` int(11) NOT NULL,
+  `MAC Address` varchar(20) NOT NULL,
+  `login_time` datetime DEFAULT NULL,
+  KEY `account_id` (`account_id`),
+  CONSTRAINT `unrecognized_login_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `unrecognized_login`
+--
+
+LOCK TABLES `unrecognized_login` WRITE;
+/*!40000 ALTER TABLE `unrecognized_login` DISABLE KEYS */;
+INSERT INTO `unrecognized_login` VALUES (1,'evil','2019-04-13 15:19:05');
+/*!40000 ALTER TABLE `unrecognized_login` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`DrvrRwrds_1rtc`@`%`*/ /*!50003 TRIGGER `unrecognizedLoginDateTime` BEFORE INSERT ON `unrecognized_login`
+FOR EACH ROW
+IF NEW.login_time IS NULL THEN SET NEW.login_time = NOW();
+END IF */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-04-13 20:46:33
