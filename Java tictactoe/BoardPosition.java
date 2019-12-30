@@ -24,6 +24,8 @@ public class BoardPosition {
      * @param c player letter
      * @requires row instanceof int, col instanceof int, c instanceof char
      * @ensures this.row = row, this.col = col, this.c = c
+	 
+	 * Creates a new BoardPosition at row and col of char c
      */
     public BoardPosition(int row, int col, char c){
         this.row = row;
@@ -65,6 +67,7 @@ public class BoardPosition {
      * @Override
      * @param obj
      * @return if this is equal to obj
+	 * Tests if two boardpositions are equal
      */
     public boolean equals(Object obj){
         if(!(obj instanceof BoardPosition)){
@@ -72,9 +75,6 @@ public class BoardPosition {
         }
         BoardPosition pos = (BoardPosition) obj;
 
-        if(pos.getColumn()==this.getColumn() && pos.getRow()==this.getRow() && pos.getPlayer()==this.getPlayer())
-            return true;
-        else
-            return false;
+        return pos.getColumn()==this.getColumn() && pos.getRow()==this.getRow() && pos.getPlayer()==this.getPlayer();
     }
 }
